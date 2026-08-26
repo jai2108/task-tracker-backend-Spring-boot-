@@ -29,14 +29,14 @@ public class TaskController {
 
     // 2. CREATE (POST /tasks) -> Connected to React handleSubmitTask
     @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+    public ResponseEntity<Task> createOneTask(@RequestBody Task task) {
         Task savedTask = taskRepository.save(task);
         return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
     }
 
     // 3. UPDATE / EDIT (PATCH /tasks/{id}) -> Connected to React Edit flow
     @PatchMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task updatedTaskDetails) {
+    public ResponseEntity<Task> updateOneTask(@PathVariable Long id, @RequestBody Task updatedTaskDetails) {
         Optional<Task> optionalTask = taskRepository.findById(id);
 
         if (optionalTask.isEmpty()) {
